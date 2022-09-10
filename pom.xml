@@ -5,12 +5,13 @@
   <version>0.0.1-SNAPSHOT</version>
   
   <build>
-    <sourceDirectory>src</sourceDirectory>
+    <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
+        
           <release>17</release>
         </configuration>
       </plugin>

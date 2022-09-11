@@ -14,6 +14,10 @@ public class RandomUtils {
 	public static final <T> T pickRandom(Random random, List<T> t) {
 		return t.get( random.nextInt(t.size()) ) ;
 	}
+	public static final <Z, T extends Z, U extends Z> Z pickRandom(Random random, T a, List<U> orB) {
+		float aChance = 1 / (1+orB.size());
+		return random.nextFloat() < aChance ? a : pickRandom(random, orB);
+	}
 	
 	public static final <T> T pickRandom(Random random, Set<T> set) {
 		if (set.size() == 0)
@@ -22,4 +26,5 @@ public class RandomUtils {
 		var keys = (T[])set.toArray();
 		return keys[random.nextInt(keys.length)];
 	}
+	
 }

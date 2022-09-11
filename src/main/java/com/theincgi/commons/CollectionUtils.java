@@ -1,8 +1,10 @@
 package com.theincgi.commons;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CollectionUtils {
 	
@@ -10,7 +12,7 @@ public class CollectionUtils {
 	@SuppressWarnings("unchecked")
 	public static <T,U extends T, Z extends List<U>> Z addAllWhereExtends( Z into, List<? extends T> from, Class<U> t ) {
 		for( var f : from )
-			if( f.getClass().isInstance(t) )
+			if( t.isInstance(f) ) //class isInstance obj
 				into.add((U) f);
 		
 		return into;
@@ -30,5 +32,9 @@ public class CollectionUtils {
 			}
 		}
 		return new Pair<>( bestIndex, bestValue );
+	}
+	
+	public static <T, Z extends List<T>> Z collect( Stream<T> stream, Supplier<Z> list ) {
+		return stream.collect(Collectors.toCollection(list));
 	}
 }

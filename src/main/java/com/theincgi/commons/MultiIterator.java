@@ -29,8 +29,12 @@ public class MultiIterator<T> implements Iterator<T>, Iterable<T> {
 	
 	@Override
 	public T next() {
-		hasNext();                        //make sure we're on a usable/last iterator
-		return iterators[current].next(); //let the iterator throw an error 
+		try {
+			hasNext();                        //make sure we're on a usable/last iterator
+			return iterators[current].next(); //let the iterator throw an error
+		}finally {
+			hasNext = null;
+		}
 	}
 	
 	@Override

@@ -36,6 +36,13 @@ public class CollectionUtils {
 		return new Pair<>( bestIndex, bestValue );
 	}
 	
+	public static BiFunction<? extends Number, ? extends Number, Boolean> GREATEST = (a,b) -> {
+		return a.doubleValue() < b.doubleValue();
+	};
+	
+	public static BiFunction<? extends Number, ? extends Number, Boolean> LEAST = (a,b) -> {
+		return a.doubleValue() > b.doubleValue();
+	};
 	
 	public static <T, Z extends List<T>> Z collect( Stream<T> stream, Supplier<Z> list ) {
 		return stream.collect(Collectors.toCollection(list));

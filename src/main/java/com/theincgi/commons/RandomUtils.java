@@ -27,4 +27,17 @@ public class RandomUtils {
 		return keys[random.nextInt(keys.length)];
 	}
 	
+	@SafeVarargs
+	public static final <T> boolean isAnyOf(T t, T... any) {
+		for(T a : any) {
+			if(t==null && a==null)
+				return true;
+			if(t==null || a==null)
+				continue;
+			if(t.equals(a))
+				return true;
+		}
+		return false;
+	}
+	
 }

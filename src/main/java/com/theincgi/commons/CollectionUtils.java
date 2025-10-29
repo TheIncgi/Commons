@@ -1,7 +1,9 @@
 package com.theincgi.commons;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -34,7 +36,17 @@ public class CollectionUtils {
 		return new Pair<>( bestIndex, bestValue );
 	}
 	
+	
 	public static <T, Z extends List<T>> Z collect( Stream<T> stream, Supplier<Z> list ) {
 		return stream.collect(Collectors.toCollection(list));
+	}
+	
+	public static <T> void removeMatching( List<T> list, Function<T, Boolean> filter) {
+		LinkedList<T> toRemove = new LinkedList<>();
+		for(T t : list) {
+			if(filter.apply(t))
+				toRemove.add(t);
+		}
+		list.removeAll(toRemove);
 	}
 }
